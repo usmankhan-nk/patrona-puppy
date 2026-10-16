@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Patrona Puppy</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            height: 190vh;
+            background-color: rgb(52, 58, 64) !important;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(145deg, #0a0a0a, #111) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2vh 3vw;
+            border-bottom: 0.4vh solid #ffea00;
+            /* Yellow glowing line */
+            position: relative;
+            animation: navGlow 4s infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Brand on left, hamburger on right */
+        }
+
+        /* Animated neon border at bottom */
+        .navbar::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0.4vh;
+            background: linear-gradient(90deg, #ffea00, #ff4da6, #39ff14, #1e90ff, #ff073a);
+            background-size: 400% 100%;
+            animation: borderFlow 6s linear infinite;
+        }
+
+        /* Glow pulse animation */
+        @keyframes navGlow {
+            0% {
+                box-shadow: 0 0.5vh 2vh rgba(255, 234, 0, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 1vh 4vh rgba(255, 234, 0, 0.8);
+            }
+        }
+
+        /* Navbar Brand */
+        .navbar-brand {
+            color: #ffea00 !important;
+            font-size: 2.5vh;
+            font-weight: bold;
+            text-shadow: 0 0 1vh #ffea00, 0 0 2vh #ffea00;
+            animation: neonPulse 3s infinite alternate;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Navbar Logo */
+        .navbar-brand img.logo {
+            width: 5vw;
+            height: 8vh;
+            filter: drop-shadow(0 0 1vh #ffea00);
+            animation: neonGlowLogo 2s infinite alternate;
+            margin-right: 1vw;
+        }
+
+        @keyframes neonGlowLogo {
+            0% {
+                filter: drop-shadow(0 0 0.8vh #ffea00);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 2vh #ffea00);
+            }
+        }
+
+        /* Navbar Links */
+        .nav-link {
+            font-weight: 500;
+            color: #ddd !important;
+            margin: 0 1.2vw;
+            position: relative;
+            transition: color 0.3s ease;
+            font-size: 2vh;
+        }
+
+        /* Neon underline on hover */
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -0.6vh;
+            left: 0;
+            width: 100%;
+            height: 0.2vh;
+            background: #ffea00;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffea00 !important;
+            text-shadow: 0 0 1vh #ffea00;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Hamburger Button */
+        .navbar-toggler {
+            border: none;
+            outline: none;
+            font-size: 3vh;
+            color: #ffea00;
+            text-shadow: 0 0 1vh #ffea00;
+        }
+
+
+        /* Hero Section with gradient and floating effect */
+        .hero {
+            background: url('/assests/slider-breed.jpg') no-repeat center center/cover;
+            /* apni image ka path dalen */
+            min-height: 100vh;
+            /* full screen height */
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            /* halka dark overlay for better text visibility */
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Tour Cards Hover */
+        .tour-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tour Cards Hover */
+        .tour-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Hover effect */
+        .tour-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card image height using viewport height */
+        .tour-card .card-img-top {
+            height: 35vh;
+            /* Adjust as needed */
+            object-fit: cover;
+            /* Keeps image aspect ratio */
+        }
+
+        /* Card body spacing */
+        .tour-card .card-body {
+            padding: 1.5vh 1vw;
+        }
+
+        /* Button Glow Effect */
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+
+        /* Button Glow Effect */
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Card Hover Effect */
+        .clickable-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .clickable-card:hover {
+            transform: translateY(-1vh);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tour Cards Hover */
+        .tour-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button Glow Effect */
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Modal Styling */
+        .custom-modal {
+            border-radius: 1.5rem;
+            padding: 2vh 2vw;
+        }
+
+        .custom-modal .modal-body {
+            font-size: 1.9vh;
+            line-height: 1.6;
+            max-height: 65vh;
+            /* keeps modal responsive */
+            overflow-y: auto;
+            text-align: center;
+            /* Center all modal text */
+        }
+
+        .custom-modal .modal-title {
+            font-size: 2.3vh;
+            font-weight: 600;
+        }
+
+        .custom-modal img {
+            max-height: 40vh;
+            width: auto;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+
+        /* Footer */
+        /* Futuristic Footer */
+        footer {
+            background: linear-gradient(145deg, #0a0a0a, #111);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            border-top: 3px solid #0ff;
+            overflow: hidden;
+            animation: footerGlow 4s infinite alternate;
+        }
+
+        /* Animated neon border at top */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #0ff, #ff4da6, #39ff14, #1e90ff, #ff073a);
+            background-size: 400% 100%;
+            animation: borderFlow 6s linear infinite;
+        }
+
+        /* Glow pulse animation */
+        @keyframes footerGlow {
+            0% {
+                box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 -10px 40px rgba(0, 255, 255, 0.8);
+            }
+        }
+
+        /* Flowing neon border animation */
+        @keyframes borderFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 400% 50%;
+            }
+        }
+
+        /* Footer Titles */
+        footer h5 {
+            color: #0ff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 12px #0ff, 0 0 25px #0ff;
+            animation: neonPulse 3s infinite alternate;
+        }
+
+        /* Footer Links */
+        /* Futuristic Footer */
+        footer {
+            background: linear-gradient(145deg, #0a0a0a, #111);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            border-top: 3px solid #ffea00;
+            /* Yellow border */
+            overflow: hidden;
+            animation: footerGlow 4s infinite alternate;
+        }
+
+        /* Animated neon border at top */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ffea00, #ff4da6, #39ff14, #1e90ff, #ff073a);
+            background-size: 400% 100%;
+            animation: borderFlow 6s linear infinite;
+        }
+
+        /* Glow pulse animation */
+        @keyframes footerGlow {
+            0% {
+                box-shadow: 0 -5px 20px rgba(255, 234, 0, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 -10px 40px rgba(255, 234, 0, 0.8);
+            }
+        }
+
+        /* Flowing neon border animation */
+        @keyframes borderFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 400% 50%;
+            }
+        }
+
+        /* Footer Titles (Yellow Glow) */
+        footer h5 {
+            color: #ffea00;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 12px #ffea00, 0 0 25px #ffea00;
+            animation: neonPulse 3s infinite alternate;
+        }
+
+        /* Footer Links */
+        footer a {
+            display: inline-block;
+            margin: 0.3rem 1rem;
+            color: #bbb;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        footer a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            background: #ffea00;
+            /* Yellow underline */
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffea00;
+            text-shadow: 0 0 10px #ffea00;
+        }
+
+        footer a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Floating glowing effect */
+        footer::after {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 234, 0, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: floatGlow 8s infinite alternate;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            100% {
+                transform: translateY(-20px) translateX(20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/assests/logo.svg" alt="Pleasant Tours Logo" class="logo" width="150"
+                    data-aos="zoom-in">Patrona
+                Puppy
+            </a>
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Breeds</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Country.html">Country</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Types.html">Types</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Care.html">Puppy Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero d-flex align-items-center text-center text-white">
+        <div class="container">
+            <h1 class="display-4 fw-bold" data-aos="zoom-in">A library of Dog Breeds</h1>
+            <p class="lead" data-aos="zoom-in" data-aos-delay="200">
+                How to know more about your four leg friend? How to know more dog breeds?
+                <br> Good new, we have a big library hear! <br> For each breed you can find out more about their history
+                and personality, location, etc. From giant dog breeds that offer plenty more pup to love to adorable toy
+                types, our extensive dog breed library covers various types and categories. Let's explore together!
+            </p>
+        </div>
+    </section>
+
+
+
+
+    <!-- Explore Tours Cards -->
+    <div id="Explore" class="container py-5">
+        <h1 class="text-center mb-4 display-4 fw-bold" data-aos="zoom-in" style="color: white ;">All Dogs Breeds</h1>
+        <h1 class="text-center mb-4 display-4 fw-bold" data-aos="zoom-in" style="color: white;">Dog Breeds Gallery</h1>
+
+        <div class="row g-4">
+
+            <!-- Card 1: Shih Tzu -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalShih" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/dogs/Shih_Tzu.jpg" alt="Shih Tzu"
+                        style="height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Shih Tzu</h4>
+                        <p><strong>Size:</strong> Medium</p>
+                        <p><strong>Character:</strong> Affectionate, Loyal, Playful, Charming</p>
+                        <p><strong>Color:</strong> White, Black, Gold, Red, Brindle, and more</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Card 2: Lhasa Apso -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalLhasa" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/dogs/Lhasa_Apso.jpeg" alt="Lhasa Apso"
+                        style="height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Lhasa Apso</h4>
+                        <p><strong>Size:</strong> Medium</p>
+                        <p><strong>Character:</strong> Independent, Intelligent, Alert, Dignified</p>
+                        <p><strong>Color:</strong> Gold, Black, White, Cream, Blue, or Particolor</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Maltese -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalMaltese" style="cursor:pointer;">
+                    <img class="card-img-top" src="assests/dog/dogs/Maltese.jpeg" alt="Maltese"
+                        style="height:300px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Maltese</h4>
+                        <p><strong>Size:</strong> Small</p>
+                        <p><strong>Character:</strong> Gentle, Affectionate, Playful, Intelligent, Curious</p>
+                        <p><strong>Color:</strong> Pure White, Ivory, Cream, sometimes with slight markings</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Affenpinscher -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalAffen" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/dogs/Affenpinscher.webp" alt="Affenpinscher"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Affenpinscher</h4>
+                        <p><strong>Size:</strong> Small</p>
+                        <p><strong>Character:</strong> Curious, Playful, Fun-loving, Adventurous, Stubborn</p>
+                        <p><strong>Color:</strong> Usually black, gray, silver, red, or black-and-tan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Afghan Hound -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalAfghan" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/dogs/Afghan_Hound.jpg" alt="Afghan Hound"
+                        style="height: 340px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Afghan Hound</h4>
+                        <p><strong>Size:</strong> Large</p>
+                        <p><strong>Character:</strong> Aloof, Elegant, Independent, Loyal, Gentle</p>
+                        <p><strong>Color:</strong> Black, Red, Cream, Blue, Brindle and More</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Airedale Terrier -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalAiredale" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/Airedale_Terrier.webp" alt="Airedale Terrier"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Airedale Terrier</h4>
+                        <p><strong>Size:</strong> Large</p>
+                        <p><strong>Character:</strong> Loyal, Intelligent, Alert, Confident, Friendly</p>
+                        <p><strong>Color:</strong> Tan with a black or grizzle saddle and More</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7: Akita -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalAkita" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/Akita.webp" alt="Akita"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-center">Akita</h4>
+                        <p><strong>Size:</strong> Large</p>
+                        <p><strong>Character:</strong> Active, Loyal, Courageous, Independent</p>
+                        <p><strong>Color:</strong> White, Brindle, Red, Sesame, with various coat patterns</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: Alaskan Husky -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalHusky" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/Alaskan_Husky.webp" alt="Alaskan Husky"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">Alaskan Husky</h4>
+                        <p><strong>Size:</strong> Medium to Large</p>
+                        <p><strong>Character:</strong> Affectionate, Loyal, Energetic, Playful, Intelligent</p>
+                        <p><strong>Color:</strong> Black, Grey, White, Red, with various markings like bi-color</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9: Alaskan Malamute -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalMalamute" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/Alaskan_Malamute.webp" alt="Alaskan Malamute"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">Alaskan Malamute</h4>
+                        <p><strong>Size:</strong> Large</p>
+                        <p><strong>Character:</strong> Intelligent, Active, Loyal, Strong-willed, Protective</p>
+                        <p><strong>Color:</strong> Gray/White, Sable/White, Black/White, Seal/White</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10: American Bulldog -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalBulldog" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/American_Bulldog.webp" alt="American Bulldog"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">American Bulldog</h4>
+                        <p><strong>Size:</strong> Medium to Large</p>
+                        <p><strong>Character:</strong> Strong, Stocky, Gentle, Sensitive, Loyal, Quirky, Protective</p>
+                        <p><strong>Color:</strong> White, Brindle, Fawn, Pied, or combinations of these</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11: American Eskimo Dog -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalEskimo" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/American_Eskimo_Dog.avif" alt="American Eskimo Dog"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">American Eskimo Dog</h4>
+                        <p><strong>Size:</strong> Small to Medium</p>
+                        <p><strong>Character:</strong> Eager to Please, Intelligent, Active, Alert, Curious</p>
+                        <p><strong>Color:</strong> White, Cream, Biscuit, with a thick double coat</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12: American Foxhound -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalFoxhound" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/American_Foxhound.webp" alt="American Foxhound"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">American Foxhound</h4>
+                        <p><strong>Size:</strong> Medium to Large</p>
+                        <p><strong>Character:</strong> Easy-going, Good-natured, Independent, Energetic</p>
+                        <p><strong>Color:</strong> Tri-color (Black, White, Tan), Red & White, Lemon & White</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 13: American Staffordshire Terrier -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalStaffordshire" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/American_Staffordshire_Terrier.webp"
+                        alt="American Staffordshire Terrier" style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">American Staffordshire</h4>
+                        <p><strong>Size:</strong> Medium</p>
+                        <p><strong>Character:</strong> Muscular, Energetic, Affectionate, Sweet-tempered</p>
+                        <p><strong>Color:</strong> Brindle, Fawn, Blue, Black, White, or Combinations</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 14: Norwegian Lundehund -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalLundehund" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/NorwegianLundehund.jpg" alt="Norwegian Lundehund"
+                        style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">Norwegian Lundehund</h4>
+                        <p><strong>Size:</strong> Small</p>
+                        <p><strong>Character:</strong> Energetic, Friendly, Intelligent, Curious, Agile</p>
+                        <p><strong>Color:</strong> Red, Tan, Black, Cream, with white markings</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 15: Olde English Bulldogge -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow clickable-card tour-card" data-bs-toggle="modal"
+                    data-bs-target="#modalOldeBulldogge" style="cursor:pointer;">
+                    <img class="card-img-top" src="/assests/dog/OldeEnglishBulldogge.jpg"
+                        alt="Olde English Bulldogge" style="height:340px; object-fit:cover;">
+                    <div class="card-body  text-center">
+                        <h4 class="card-title text-center">Olde English Bulldogge</h4>
+                        <p><strong>Size:</strong> Medium</p>
+                        <p><strong>Character:</strong> Loyal, Confident, Best Guard Dog, Strong-willed</p>
+                        <p><strong>Color:</strong> Brindle, Black, White, Red, or combinations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== Modals ======================== -->
+    <!-- Modal 1: Shih Tzu -->
+    <div class="modal fade" id="modalShih" tabindex="-1" aria-labelledby="modalShihLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalShihLabel">Shih Tzu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Shih_Tzu.jpg" alt="Shih Tzu">
+                    <p><strong>Name:</strong> Shih Tzu</p>
+                    <p><strong>Size:</strong> Small / Medium</p>
+                    <p><strong>Temperament:</strong> Affectionate, Loyal, Playful</p>
+                    <p><strong>Height:</strong> 9–10.5 in</p>
+                    <p><strong>Weight:</strong> 4–7.5 kg</p>
+                    <p><strong>Lifespan:</strong> 10–16 yrs</p>
+                    <p><strong>Origin:</strong> China</p>
+                    <p><strong>Note:</strong> Friendly companion, needs daily grooming</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Lhasa Apso -->
+    <div class="modal fade" id="modalLhasa" tabindex="-1" aria-labelledby="modalLhasaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLhasaLabel">Lhasa Apso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Lhasa_Apso.jpeg" alt="Lhasa Apso">
+                    <p><strong>Name:</strong> Lhasa Apso</p>
+                    <p><strong>Size:</strong> Small / Medium</p>
+                    <p><strong>Temperament:</strong> Loyal, Alert, Protective</p>
+                    <p><strong>Height:</strong> 8–11 in</p>
+                    <p><strong>Weight:</strong> 4–7.5 kg</p>
+                    <p><strong>Lifespan:</strong> 12–15 yrs</p>
+                    <p><strong>Origin:</strong> Tibet</p>
+                    <p><strong>Note:</strong> Companion & watchdog, needs grooming</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Maltese -->
+    <div class="modal fade" id="modalMaltese" tabindex="-1" aria-labelledby="modalMalteseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMalteseLabel">Maltese</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="assests/dog/dogs/Maltese.jpeg" alt="Maltese"
+                        style="max-height:40vh; object-fit:cover; border-radius:1rem;">
+                    <p style="font-size:1.8vh"><strong>Name:</strong> Maltese</p>
+                    <p style="font-size:1.8vh"><strong>Size:</strong> Small</p>
+                    <p style="font-size:1.8vh"><strong>Temperament:</strong> Gentle, Playful, Loving</p>
+                    <p style="font-size:1.8vh"><strong>Height:</strong> 8–10 in</p>
+                    <p style="font-size:1.8vh"><strong>Weight:</strong> 3–4 kg</p>
+                    <p style="font-size:1.8vh"><strong>Lifespan:</strong> 12–15 yrs</p>
+                    <p style="font-size:1.8vh"><strong>Origin:</strong> Malta</p>
+                    <p style="font-size:1.8vh"><strong>Note:</strong> Elegant lapdog, silky coat, needs grooming</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Affenpinscher -->
+    <div class="modal fade" id="modalAffen" tabindex="-1" aria-labelledby="modalAffenLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAffenLabel">Affenpinscher</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Affenpinscher.webp" alt="Affenpinscher"
+                        style="max-height:40vh; object-fit:cover; border-radius:1rem;">
+                    <p style="font-size:1.8vh"><strong>Name:</strong> Affenpinscher</p>
+                    <p style="font-size:1.8vh"><strong>Size:</strong> Small</p>
+                    <p style="font-size:1.8vh"><strong>Temperament:</strong> Playful, Bold, Loyal</p>
+                    <p style="font-size:1.8vh"><strong>Height:</strong> 9–11 in</p>
+                    <p style="font-size:1.8vh"><strong>Weight:</strong> 3–6 kg</p>
+                    <p style="font-size:1.8vh"><strong>Lifespan:</strong> 12–14 yrs</p>
+                    <p style="font-size:1.8vh"><strong>Origin:</strong> Germany</p>
+                    <p style="font-size:1.8vh"><strong>Note:</strong> Nicknamed "Monkey Terrier", fun-loving watchdog
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal 5: Afghan Hound -->
+    <div class="modal fade" id="modalAfghan" tabindex="-1" aria-labelledby="modalAfghanLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAfghanLabel">Afghan Hound</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Afghan_Hound.jpg" alt="Afghan Hound">
+                    <p><strong>Name:</strong> Afghan Hound</p>
+                    <p><strong>Size:</strong> Large</p>
+                    <p><strong>Temperament:</strong> Elegant, Dignified, Loyal</p>
+                    <p><strong>Height:</strong> 25–29 in</p>
+                    <p><strong>Weight:</strong> 20–27 kg</p>
+                    <p><strong>Lifespan:</strong> 12–18 yrs</p>
+                    <p><strong>Origin:</strong> Afghanistan</p>
+                    <p><strong>Note:</strong> Graceful sighthound, needs grooming & exercise</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6: Airedale Terrier -->
+    <div class="modal fade" id="modalAiredale" tabindex="-1" aria-labelledby="modalAiredaleLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAiredaleLabel">Airedale Terrier</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Airedale_Terrier.webp" alt="Airedale Terrier">
+                    <p><strong>Name:</strong> Airedale Terrier</p>
+                    <p><strong>Size:</strong> Large</p>
+                    <p><strong>Temperament:</strong> Intelligent, Brave, Loyal</p>
+                    <p><strong>Height:</strong> 21–23 in</p>
+                    <p><strong>Weight:</strong> 18–29 kg</p>
+                    <p><strong>Lifespan:</strong> 10–14 yrs</p>
+                    <p><strong>Origin:</strong> England (Yorkshire)</p>
+                    <p><strong>Note:</strong> "King of Terriers", active & protective</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 7: Akita -->
+    <div class="modal fade" id="modalAkita" tabindex="-1" aria-labelledby="modalAkitaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAkitaLabel">Akita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Akita.webp" alt="Akita">
+                    <p><strong>Name:</strong> Airedale Terrier</p>
+                    <p><strong>Size:</strong> Large</p>
+                    <p><strong>Temperament:</strong> Intelligent, Brave, Loyal</p>
+                    <p><strong>Height:</strong> 21–23 in</p>
+                    <p><strong>Weight:</strong> 18–29 kg</p>
+                    <p><strong>Lifespan:</strong> 10–14 yrs</p>
+                    <p><strong>Origin:</strong> England (Yorkshire)</p>
+                    <p><strong>Note:</strong> "King of Terriers", active & protective</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 8: Alaskan Husky -->
+    <div class="modal fade" id="modalHusky" tabindex="-1" aria-labelledby="modalHuskyLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHuskyLabel">Alaskan Husky</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Alaskan_Husky.webp" alt="Alaskan Husky">
+                    <p><strong>Name:</strong> Alaskan Husky</p>
+                    <p><strong>Size:</strong> Medium</p>
+                    <p><strong>Temperament:</strong> Energetic, Friendly, Loyal</p>
+                    <p><strong>Height:</strong> 20–24 in</p>
+                    <p><strong>Weight:</strong> 16–27 kg</p>
+                    <p><strong>Lifespan:</strong> 12–15 yrs</p>
+                    <p><strong>Origin:</strong> Alaska (USA)</p>
+                    <p><strong>Note:</strong> Bred for sledding & endurance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 9: Alaskan Malamute -->
+    <div class="modal fade" id="modalMalamute" tabindex="-1" aria-labelledby="modalMalamuteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMalamuteLabel">Alaskan Malamute</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/Alaskan_Malamute.webp" alt="Alaskan Malamute">
+                    <p><strong>Name:</strong> Alaskan Malamute</p>
+                    <p><strong>Size:</strong> Large</p>
+                    <p><strong>Temperament:</strong> Affectionate, Strong, Loyal</p>
+                    <p><strong>Height:</strong> 23–25 in</p>
+                    <p><strong>Weight:</strong> 34–45 kg</p>
+                    <p><strong>Lifespan:</strong> 12–16 yrs</p>
+                    <p><strong>Origin:</strong> Alaska (Mahlemut Inuit)</p>
+                    <p><strong>Note:</strong> Oldest Arctic sled breed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 10: American Bulldog -->
+    <div class="modal fade" id="modalBulldog" tabindex="-1" aria-labelledby="modalBulldogLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBulldogLabel">American Bulldog</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/American_Bulldog.webp" alt="American Bulldog">
+                    <p><strong>Size:</strong> Medium to Large</p>
+                    <p><strong>Character:</strong> Strong, Gentle, Protective</p>
+                    <p><strong>Temperament:</strong> Loyal, Friendly, Affectionate</p>
+                    <p><strong>Lifespan:</strong> 8–15 years</p>
+                    <p><strong>Fun Fact:</strong> Dummy fun fact about American Bulldog.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 11: American Eskimo Dog -->
+    <div class="modal fade" id="modalEskimo" tabindex="-1" aria-labelledby="modalEskimoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEskimoLabel">American Eskimo Dog</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/American_Eskimo_Dog.avif" alt="American Eskimo Dog">
+                    <p><strong>Size:</strong> Small to Medium</p>
+                    <p><strong>Character:</strong> Intelligent, Active, Friendly</p>
+                    <p><strong>Temperament:</strong> Eager to Please, Alert</p>
+                    <p><strong>Lifespan:</strong> 13–15 years</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 12: American Foxhound -->
+    <div class="modal fade" id="modalFoxhound" tabindex="-1" aria-labelledby="modalFoxhoundLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFoxhoundLabel">American Foxhound</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/American_Foxhound.webp" alt="American Foxhound">
+                    <p><strong>Size:</strong> Medium to Large</p>
+                    <p><strong>Character:</strong> Energetic, Independent, Friendly</p>
+                    <p><strong>Temperament:</strong> Easy-going, Active</p>
+                    <p><strong>Lifespan:</strong> 11–13 years</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 13: American Staffordshire Terrier -->
+    <div class="modal fade" id="modalStaffordshire" tabindex="-1" aria-labelledby="modalStaffordshireLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalStaffordshireLabel">American Staffordshire</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/American_Staffordshire_Terrier.webp" alt="American Staffordshire">
+                    <p><strong>Size:</strong> Medium</p>
+                    <p><strong>Character:</strong> Muscular, Energetic, Loyal</p>
+                    <p><strong>Origin:</strong> United States</p>
+                    <p><strong>Breed Group:</strong> Terrier</p>
+                    <p><strong>Temperament:</strong> Friendly, Courageous, Protective</p>
+                    <p><strong>Lifespan:</strong> 10–12 years</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 14: Norwegian Lundehund -->
+    <div class="modal fade" id="modalLundehund" tabindex="-1" aria-labelledby="modalLundehundLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLundehundLabel">Norwegian Lundehund</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/NorwegianLundehund.jpg" alt="Norwegian Lundehund">
+                    <p><strong>Size:</strong> Small</p>
+                    <p><strong>Character:</strong> Alert, Energetic</p>
+                    <p><strong>Origin:</strong> Norway</p>
+                    <p><strong>Breed Group:</strong> Non Sporting</p>
+                    <p><strong>Temperament:</strong> Loyal, Protective</p>
+                    <p><strong>Lifespan:</strong> ~12 years</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 15: Olde English Bulldogge -->
+    <div class="modal fade" id="modalOldeBulldogge" tabindex="-1" aria-labelledby="modalOldeBulldoggeLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content custom-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalOldeBulldoggeLabel">Olde English Bulldogge</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="/assests/dog/dogs/OldeEnglishBulldogge.jpg" alt="Olde English Bulldogge">
+                    <p><strong>Size:</strong> Medium</p>
+                    <p><strong>Character:</strong> Alert, Courageous</p>
+                    <p><strong>Origin:</strong> United States</p>
+                    <p><strong>Breed Group:</strong> Guardian Dogs</p>
+                    <p><strong>Temperament:</strong> Confident, Brave</p>
+                    <p><strong>Lifespan:</strong> 10–12 years</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- About Us -->
+                <div class="col-md-4 mb-4" style="color: white;">
+                    <h5 class="fw-bold">About Patrona Puppy</h5>
+                    <p class="small">
+                        This website is created by a veteran who wishes to
+                        share stories about the dogs she has met and
+                        studied.
+                        It is also a place for dog lovers who want to learn
+                        more about these amazing creatures.
+                    </p>
+                    <div class="d-flex justify-content-center justify-content-md-start">
+                        <a href="https://facebook.com/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-facebook fs-5"></i></a>
+                        <a href="https://wa.me/923001234567" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-whatsapp fs-5"></i></a>
+                        <a href="https://m.me/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-messenger fs-5"></i></a>
+                        <a href="https://instagram.com/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-instagram fs-5"></i></a>
+                        <a href="https://twitter.com/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-twitter fs-5"></i></a>
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4" style="color: white;">
+                    <h5 class="fw-bold">Contact Info</h5>
+                    <p class="small mb-1">
+                        <span class="d-block">Address:</span><span class="text-white"> 123 Puppy Lane, Dogtown
+                        </span><br>
+                        <span class="d-block">Telephone:</span><span class="text-white">+92 300
+                            1234567</span><br>
+                        <span class="d-block">Email:</span><span class="text-white">info@patronapuppy.com</span>
+                    </p>
+                </div>
+                <!-- Quick Links -->
+        <!-- Quick Links -->
+        <div class="col-md-4 mb-4" style="color: white;">
+          <h5 class="fw-bold">Quick Links</h5>
+          <ul class="nav flex-column footer-quick-links">
+            <li class="nav-item"><a href="index.html" class="nav-link px-0">Home</a></li>
+            <li class="nav-item"><a href="Breeds.html" class="nav-link px-0">Breeds</a></li>
+            <li class="nav-item"><a href="Country.html" class="nav-link px-0">Country</a></li>
+            <li class="nav-item"><a href="Types.html" class="nav-link px-0">Types</a></li>
+            <li class="nav-item"><a href="Care.html" class="nav-link px-0">Puppy Care</a></li>
+            <li class="nav-item"><a href="FAQ.html" class="nav-link px-0">FAQ</a></li>
+            <li class="nav-item"><a href="Contact.html" class="nav-link px-0">Contact Us</a></li>
+          </ul>
+        </div>
+            </div>
+            <!-- Copyright -->
+            <div class="text-center border-top mt-2 pt-2" style="color: white;">
+                <p class="mb-0 fs-5 fw-bold">© 2025 All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: true
+        });
+    </script>
+</body>
+
+</html>

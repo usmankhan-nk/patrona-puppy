@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Patrona Puppy</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Animate.css for modal animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        body {
+            height: 180vh;
+            background-color: rgb(52, 58, 64) !important;
+            scroll-behavior: smooth;
+        }
+
+        /* Glass Navbar */
+        .navbar {
+            background: linear-gradient(145deg, #0a0a0a, #111) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2vh 3vw;
+            border-bottom: 0.4vh solid #ffea00;
+            position: relative;
+            animation: navGlow 4s infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0.4vh;
+            background: linear-gradient(90deg, #ffea00, #ff4da6, #39ff14, #1e90ff, #ff073a);
+            background-size: 400% 100%;
+            animation: borderFlow 6s linear infinite;
+        }
+
+        @keyframes navGlow {
+            0% {
+                box-shadow: 0 0.5vh 2vh rgba(255, 234, 0, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 1vh 4vh rgba(255, 234, 0, 0.8);
+            }
+        }
+
+        .navbar-brand {
+            color: #ffea00 !important;
+            font-size: 2.5vh;
+            font-weight: bold;
+            text-shadow: 0 0 1vh #ffea00, 0 0 2vh #ffea00;
+            animation: neonPulse 3s infinite alternate;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img.logo {
+            width: 5vw;
+            height: 8vh;
+            filter: drop-shadow(0 0 1vh #ffea00);
+            animation: neonGlowLogo 2s infinite alternate;
+            margin-right: 1vw;
+        }
+
+        @keyframes neonGlowLogo {
+            0% {
+                filter: drop-shadow(0 0 0.8vh #ffea00);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 2vh #ffea00);
+            }
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #ddd !important;
+            margin: 0 1.2vw;
+            position: relative;
+            transition: color 0.3s ease;
+            font-size: 2vh;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -0.6vh;
+            left: 0;
+            width: 100%;
+            height: 0.2vh;
+            background: #ffea00;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ffea00 !important;
+            text-shadow: 0 0 1vh #ffea00;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .navbar-toggler {
+            border: none;
+            outline: none;
+            font-size: 3vh;
+            color: #ffea00;
+            text-shadow: 0 0 1vh #ffea00;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('/assests/slider-puppycare.webp') no-repeat center center/cover;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Tour Cards Hover & Glow */
+        .tour-card {
+            min-width: 250px;
+            flex: 0 0 auto;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+            position: relative;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-0.8vh) scale(1.05);
+            box-shadow: 0 1vh 2vh rgba(255, 234, 0, 0.6);
+            border: 0.2vw solid #ffea00;
+            animation: glowPulse 1.5s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 1vh 2vh rgba(255, 234, 0, 0.6);
+            }
+
+            100% {
+                box-shadow: 0 1vh 3vh rgba(255, 234, 0, 0.9);
+            }
+        }
+
+        .custom-card {
+            margin: 0 0.6vw;
+            height: 25vh;
+            width: 15vw;
+            background: #1a1a1a;
+            color: white;
+            box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.25);
+        }
+
+        @media (max-width: 992px) {
+            .custom-card {
+                width: 35vw;
+                height: 22vh;
+                margin: 1vh auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .custom-card {
+                width: 80vw;
+                height: auto;
+                margin: 1.5vh auto;
+            }
+        }
+
+        #careCard1,
+        #careCard2,
+        #careCard3,
+        #careCard4,
+        #careCard5 {
+            width: 16vw;
+            min-width: 160px;
+            height: 25vh;
+            min-height: 200px;
+        }
+
+        /* Button Glow Effect */
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(255, 234, 0, 0.5);
+        }
+
+        #ex-btn {
+            text-align: center;
+        }
+
+        /* Modal Glow */
+        .modal-content {
+            background: #111;
+            border: 0.2vh solid #ffea00;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 2vh #ffea00;
+            animation: modalGlow 2s infinite alternate;
+            color: white;
+        }
+
+        .modal-header h2,
+        .modal-body p {
+            text-align: center;
+        }
+
+        @keyframes modalGlow {
+            0% {
+                box-shadow: 0 0 1vh #ffea00, 0 0 2vh #ffea00;
+            }
+
+            100% {
+                box-shadow: 0 0 2vh #ffea00, 0 0 4vh #ffea00;
+            }
+        }
+
+        /* ✅ Card Styling */
+        .topic-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #0a0a0a;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ✅ Images (Responsive, no crop) */
+        .topic-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background: #fff;
+            border-bottom: 2px solid #eee;
+            background-color: #0a0a0a;
+        }
+
+        /* ✅ Text section */
+        .topic-card .card-body {
+            padding: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .topic-card h3 {
+            font-size: 1.2rem;
+            margin: 0.8rem 0;
+            font-weight: 600;
+        }
+
+        .topic-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* ✅ Custom Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+
+        .badge-activity {
+            background: linear-gradient(45deg, #ff9966, #ff5e62);
+        }
+
+        .badge-health {
+            background: linear-gradient(45deg, #56ab2f, #a8e063);
+        }
+
+        .badge-beauty {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(145deg, #0a0a0a, #111);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            border-top: 3px solid #ffea00;
+            overflow: hidden;
+            animation: footerGlow 4s infinite alternate;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ffea00, #ff4da6, #39ff14, #1e90ff, #ff073a);
+            background-size: 400% 100%;
+            animation: borderFlow 6s linear infinite;
+        }
+
+        @keyframes footerGlow {
+            0% {
+                box-shadow: 0 -5px 20px rgba(255, 234, 0, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 -10px 40px rgba(255, 234, 0, 0.8);
+            }
+        }
+
+        footer h5 {
+            color: #ffea00;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 12px #ffea00, 0 0 25px #ffea00;
+            animation: neonPulse 3s infinite alternate;
+        }
+
+        footer a {
+            display: inline-block;
+            margin: 0.3rem 1rem;
+            color: #bbb;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        footer a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            background: #ffea00;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffea00;
+            text-shadow: 0 0 10px #ffea00;
+        }
+
+        footer a:hover::after {
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/assests/logo.svg" alt="Pleasant Tours Logo" class="logo" width="150"
+                    data-aos="zoom-in">Patrona Puppy
+            </a>
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Breeds.html">Breeds</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Country.html">Country</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Types.html">Types</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Puppy Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero d-flex align-items-center text-center text-white">
+        <div class="container">
+            <h1 class="display-4 fw-bold" data-aos="zoom-in">A Family Of Love</h1>
+            <p class="lead" data-aos="zoom-in" data-aos-delay="200">
+                Dogs are cherished as family members, included in celebrations, daily routines, and traditions, bringing
+                joy, loyalty, and unconditional love to every household.
+            </p>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <div id="Explore" class="container-fluid px-2 py-5">
+        <div class="row justify-content-center gx-0">
+
+            <!-- Card 1 -->
+            <div class="col">
+                <div class="p-2">
+                    <div id="careCard1" class="card tour-card custom-card clickable-card" data-bs-toggle="modal"
+                        data-bs-target="#modalCard1" data-aos="flip-left" style="cursor:pointer;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Bathing</h5>
+                            <p class="card-text">Click to learn more about bathing your puppy safely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col">
+                <div class="p-2">
+                    <div id="careCard2" class="card tour-card custom-card clickable-card" data-bs-toggle="modal"
+                        data-bs-target="#modalCard2" data-aos="flip-left" style="cursor:pointer;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Grooming</h5>
+                            <p class="card-text">Click to discover grooming tips and tricks for your puppy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col">
+                <div class="p-2">
+                    <div id="careCard3" class="card tour-card custom-card clickable-card" data-bs-toggle="modal"
+                        data-bs-target="#modalCard3" data-aos="flip-left" style="cursor:pointer;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Ear Care</h5>
+                            <p class="card-text">Click to learn how to clean your puppy's ears properly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col">
+                <div class="p-2">
+                    <div id="careCard4" class="card tour-card custom-card clickable-card" data-bs-toggle="modal"
+                        data-bs-target="#modalCard4" data-aos="flip-left" style="cursor:pointer;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Eye Care</h5>
+                            <p class="card-text">Click to check eye care tips for your puppy's healthy eyes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col">
+                <div class="p-2">
+                    <div id="careCard5" class="card tour-card custom-card clickable-card" data-bs-toggle="modal"
+                        data-bs-target="#modalCard5" data-aos="flip-left" style="cursor:pointer;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Paws & Nails</h5>
+                            <p class="card-text">Click to learn how to maintain your puppy's paws and nails.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <div class="modal fade" id="modalCard1" tabindex="-1" aria-labelledby="modalCard1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content animate__animated animate__fadeIn">
+                <div class="modal-header justify-content-center">
+                    <div class="w-100 text-center">
+                        <h2>Bathing</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Every 3–4 weeks or only when dirty. Avoid frequent baths to protect skin. Use gentle pet
+                        shampoos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCard2" tabindex="-1" aria-labelledby="modalCard2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content animate__animated animate__fadeIn">
+                <div class="modal-header justify-content-center">
+                    <div class="w-100 text-center">
+                        <h2>Grooming</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Brush your puppy 2–3 times a week. Helps reduce shedding, improves coat health, and builds
+                        bonding.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCard3" tabindex="-1" aria-labelledby="modalCard3Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content animate__animated animate__fadeIn">
+                <div class="modal-header justify-content-center">
+                    <div class="w-100 text-center">
+                        <h2>Ear Care</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Use vet-approved ear cleaner with cotton balls. Never insert cotton swabs inside the canal to
+                        avoid injury.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCard4" tabindex="-1" aria-labelledby="modalCard4Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content animate__animated animate__fadeIn">
+                <div class="modal-header justify-content-center">
+                    <div class="w-100 text-center">
+                        <h2>Eye Care</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Check for redness, swelling, or discharge. Clean around eyes gently. Consult vet if any unusual
+                        signs appear.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCard5" tabindex="-1" aria-labelledby="modalCard5Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content animate__animated animate__fadeIn">
+                <div class="modal-header justify-content-center">
+                    <div class="w-100 text-center">
+                        <h2>Paws & Nails</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Trim nails every 3–4 weeks. Check paw pads and dew claws. Ask a vet/groomer if unsure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ✅ Relevant Topics Section -->
+    <div id="Explore" class="container py-5">
+        <h2 class="text-center mb-4 text-white display-4 fw-bold" data-aos="zoom-in">Relevant Topics</h2>
+        <div class="row g-4">
+
+            <!-- Card 1 -->
+            <div class="col-md-4" data-aos="fade-right">
+                <div class="card topic-card h-100">
+                    <a href="https://thebark.com/content/9-ways-improve-your-relationship-your-dog" target="_blank">
+                        <img src="assests/play_with_your_dog.jpg" alt="Bonding with Dog" class="topic-img img-fluid">
+                        <div class="card-body text-center">
+                            <span class="badge badge-activity">Activity</span>
+                            <h3>Increasing the Bonding with Your Dog</h3>
+                            <p class="text-white">Socialize your puppy with people and dogs, but always look out for her wellbeing. Groom
+                                and pet her regularly to build trust and affection.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="card topic-card h-100">
+                    <a href="https://lila-loves-it.com/en/shop/collection/puppies/" target="_blank">
+                        <img src="assests/annual care.jpeg" alt="Annual Health Check" class="topic-img img-fluid">
+                        <div class="card-body text-center">
+                            <span class="badge badge-health">Health</span>
+                            <h3>How Important is Annual Health Check</h3>
+                            <p class="text-white">Regular vet checkups are essential for keeping your puppy healthy and detecting any
+                                issues early.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4" data-aos="fade-left">
+                <div class="card topic-card h-100">
+                    <a href="https://www.thesprucepets.com/how-to-care-for-puppies-1117475" target="_blank">
+                        <img src="/assests/grooming_tip.jpg" alt="Grooming Tips" class="topic-img img-fluid">
+                        <div class="card-body text-center">
+                            <span class="badge badge-beauty">Beauty</span>
+                            <h3>7 Grooming Tips for Your Puppy</h3>
+                            <p class="text-white">Proper grooming keeps your puppy clean, reduces shedding, and improves overall health.
+                                Start early for a well-adjusted pet.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Explore Button -->
+    <div class="row justify-content-center element-animate" style="padding: 30px;" id="ex-btn">
+        <div class="explore-btn">
+            <a href="https://www.thesprucepets.com/how-to-care-for-puppies-1117475"
+                class="btn btn-primary btn-lg">Explore All Topics</a>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- About Us -->
+                <div class="col-md-4 mb-4" style="color: white;">
+                    <h5 class="fw-bold">About Patrona Puppy</h5>
+                    <p class="small">
+                        This website is created by a veteran who wishes to
+                        share stories about the dogs she has met and
+                        studied.
+                        It is also a place for dog lovers who want to learn
+                        more about these amazing creatures.
+                    </p>
+                    <div class="d-flex justify-content-center justify-content-md-start">
+                        <a href="https://facebook.com/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-facebook fs-5"></i></a>
+                        <a href="https://wa.me/923001234567" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-whatsapp fs-5"></i></a>
+                        <a href="https://m.me/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-messenger fs-5"></i></a>
+                        <a href="https://instagram.com/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-instagram fs-5"></i></a>
+                        <a href="https://twitter.com/patronapuppy" target="_blank" class="nav-link px-2"><i
+                                class="bi bi-twitter fs-5"></i></a>
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4" style="color: white;">
+                    <h5 class="fw-bold">Contact Info</h5>
+                    <p class="small mb-1">
+                        <span class="d-block">Address:</span><span class="text-white"> 123 Puppy Lane, Dogtown
+                        </span><br>
+                        <span class="d-block">Telephone:</span><span class="text-white">+92 300 1234567</span><br>
+                        <span class="d-block">Email:</span><span class="text-white">info@patronapuppy.com</span>
+                    </p>
+                </div>
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4" style="color: white;">
+                    <h5 class="fw-bold">Quick Links</h5>
+                    <ul class="nav flex-column footer-quick-links">
+                        <li class="nav-item"><a href="index.html" class="nav-link px-0">Home</a></li>
+                        <li class="nav-item"><a href="Breeds.html" class="nav-link px-0">Breeds</a></li>
+                        <li class="nav-item"><a href="Country.html" class="nav-link px-0">Country</a></li>
+                        <li class="nav-item"><a href="Types.html" class="nav-link px-0">Types</a></li>
+                        <li class="nav-item"><a href="Care.html" class="nav-link px-0">Puppy Care</a></li>
+                        <li class="nav-item"><a href="FAQ.html" class="nav-link px-0">FAQ</a></li>
+                        <li class="nav-item"><a href="Contact.html" class="nav-link px-0">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="text-center border-top mt-2 pt-2" style="color: white;">
+                <p class="mb-0 fs-5 fw-bold">© 2025 All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: true
+        });
+    </script>
+</body>
+
+</html>
